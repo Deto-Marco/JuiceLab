@@ -1,5 +1,5 @@
 # JuiceLab
-# 4Pilots
+
 
 ## Table of contents
 
