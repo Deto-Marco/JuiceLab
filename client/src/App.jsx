@@ -1,10 +1,16 @@
 import React from 'react';
-import './App.css';
+import Bulletin from './components/Bulletin';
+import Footer from './components/Footer';
+import JuiceLab from './components/JuiceLab';
+import Navbar from './components/Navbar';
 
 const App = () => {
   return (
     <main>
-      <h1>Welcome World!</h1>
+    <Bulletin/>
+    <Navbar/>
+    <JuiceLab/>
+    <Footer/>
     </main>
   );
 };

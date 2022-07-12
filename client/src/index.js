@@ -5,5 +5,3 @@ import App from './App';
 const root = ReactDOMClient.createRoot(document.querySelector('#root'))
 
 root.render(<App />);
-
-
