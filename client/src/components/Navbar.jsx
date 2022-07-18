@@ -1,7 +1,5 @@
-import {BrowserRouter as Router, Routes, Route, NavLink} from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route, NavLink, useNavigate} from "react-router-dom";
 import styledComponents from 'styled-components'
-import Login from './Login'
-import Register from './Register'
 
 
 
@@ -27,17 +25,22 @@ font-family: 'Monoton', cursive;
 `
 
 
+
 const Navbar = () => {
+  const Navigate = useNavigate ()
   return (
     <Container>
         <Wrapper>
         <Center><Logo>JUICELAB</Logo></Center>
-        <NavLink to="/login">Login&nbsp; | &nbsp;</NavLink>
-        <NavLink to="/register">Register</NavLink>
-        <Routes>
-            <Route path="/login" element={<Login/>}/>
-            <Route path="/register" element={<Register/>}/>
-        </Routes>
+        
+        <div onClick={() => Navigate ("/login")}> 
+          Login
+        </div>
+        &nbsp;&nbsp;
+        <div onClick={() => Navigate ("/register")}>
+          Register
+        </div>
+
         </Wrapper>
         </Container>
   )
