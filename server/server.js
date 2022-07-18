@@ -10,7 +10,7 @@ app.use(express.json());
 
 //API
 
-
+console.log("test from Fin");
 
 // ERROR HANDLER
 app.use(notFound);
