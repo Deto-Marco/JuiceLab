@@ -6,6 +6,10 @@ import {FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa"
 
 const Container = styledComponents.div`
 display: flex;
+color: #F1A403;
+
+
+
 `
 
 const Left = styledComponents.div`
@@ -16,7 +20,8 @@ padding: 20px;
 
 `
 const Logo = styledComponents.h1`
-font-family: 'Monoton', cursive;
+font-family: 'Nunito', sans-serif,
+'Oswald', sans-serif;
 `
 
 const Description = styledComponents.p`

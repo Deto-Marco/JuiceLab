@@ -3,12 +3,13 @@ import Bulletin from './components/Bulletin';
 import Footer from './components/Footer';
 import JuiceLab from './components/JuiceLab';
 import Navbar from './components/Navbar';
-import ShoppingCart from './components/ShoppingCart';
+import Checkout from './components/Checkout';
+
 
 const App = () => {
   return (
     <main>
-      <ShoppingCart/>
+      <Checkout/>
     <Bulletin/>
     <Navbar/>
     <JuiceLab/>

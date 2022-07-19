@@ -3,7 +3,7 @@ import Bulletin from "../components/Bulletin";
 import Footer from "../components/Footer";
 import JuiceLab from "../components/JuiceLab";
 import Navbar from "../components/Navbar";
-import ShoppingCart from "../components/ShoppingCart";
+import Checkout from "../components/Checkout";
 
 
 const Routings = () => (
@@ -12,7 +12,7 @@ const Routings = () => (
         <Navbar/>
         <Routes>
             <Route path="/" element={<JuiceLab/>}/>
-            <Route path="/shoppingCart" element={<ShoppingCart/>}/>
+            <Route path="/checkout" element={<Checkout/>}/>
 
         </Routes>
         <Footer/>
