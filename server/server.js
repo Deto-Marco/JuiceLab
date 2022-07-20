@@ -2,15 +2,20 @@ import express from "express";
 import 'dotenv/config';
 import connectDatabase from "./config/mongoDb.js";
 import { errorHandler, notFound } from "./middelware/error.js";
+import mongoose from "mongoose"
+import dotenv from "dotenv"
+import user from "./routes/user.js"
 
 
 connectDatabase();
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+dotenv.config();
 
 //API
+app.use("/", user)
 
-console.log("test from Fin");
 
 // ERROR HANDLER
 app.use(notFound);
