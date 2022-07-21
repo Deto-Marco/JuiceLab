@@ -2,8 +2,8 @@ import express from "express";
 import 'dotenv/config';
 import cors from "cors";
 import connectDatabase from "./config/mongoDb.js";
-import { errorHandler, notFound } from "./Middleware/error.js";
-import fruitRoute from "./Routes/fruitListRoutes.js";
+import { errorHandler, notFound } from "./middleware/error.js";
+import fruitRoute from "./routes/fruitListRoutes.js";
 
 connectDatabase();
 const app = express();

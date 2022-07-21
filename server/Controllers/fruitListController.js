@@ -1,4 +1,4 @@
-import fruitListModel from "../Models/fruitListModel.js";
+import fruitListModel from "../models/fruitListModel.js";
 
 
 export const getFruits = async (req, res) => {
