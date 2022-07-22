@@ -4,9 +4,11 @@ import Footer from "../components/Footer";
 import JuiceLab from "../components/JuiceLab";
 import Navbar from "../components/Navbar";
 import Checkout from "../components/Checkout";
+import { ContextContainer } from "../components/context/ContextContainer";
 
 
 const Routings = () => (
+    <ContextContainer>
     <Router>
         <Bulletin/>
         <Navbar/>
@@ -18,6 +20,7 @@ const Routings = () => (
         <Footer/>
 
     </Router>
+    </ContextContainer>
 
 
 )

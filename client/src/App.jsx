@@ -4,15 +4,19 @@ import Footer from './components/Footer';
 import JuiceLab from './components/JuiceLab';
 import Navbar from './components/Navbar';
 import Checkout from './components/Checkout';
+import RecommendedProducts from './components/RecommendedProducts';
+import Products from './components/Products';
 
 
 const App = () => {
   return (
     <main>
-      <Checkout/>
+    <Checkout/>
     <Bulletin/>
     <Navbar/>
     <JuiceLab/>
+    <Products/>
+    <RecommendedProducts/>
     <Footer/>
     </main>
   );

@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styledComponents from 'styled-components'
-import {Bestsellers} from './data/items'
 import {BsCart3, BsSearch, BsHeart} from "react-icons/bs"
+import { MyContext } from './context/context'
+
+
 
 const Info = styledComponents.div`
 opacity: 0;
@@ -66,17 +68,20 @@ transition: all 0.5s ease;
 }
 `
 
-const RecommendedProducts = ({item}) => {
+const RecommendedProducts = ({imgUrl,id, title, price}) => {
+  const {cart, setCart} = useContext(MyContext)
   return (
-    <Container><p>Bestsellers</p>
+    <Container>
 
       <Circle/>
 
-        <Image src={item.imgUrl}/>  
+      <Image src={imgUrl}/>
 
       <Info>
             <Icon>
-              <BsCart3/>
+             <div onClick={() => setCart([...cart,{id,imgUrl,title,price}
+
+             ])}><BsCart3/></div>
             </Icon>
 
             <Icon>
@@ -87,12 +92,7 @@ const RecommendedProducts = ({item}) => {
               <BsHeart/>
             </Icon>
       </Info>
-     
-         <Bestsellers 
-         image={item.imgUrl} 
-         title={item.name} 
-         productSize={item.price}/>
-                  
+      {/* <div>{price}</div> */}
     </Container>
   )
 }
