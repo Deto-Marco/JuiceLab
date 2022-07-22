@@ -2,6 +2,9 @@ import React from 'react'
 import styledComponents from 'styled-components'
 import Products from './Products'
 
+
+
+
 //import {Link} from "react-router-dom"
 
 const DisplayMessage = styledComponents.div`
@@ -72,7 +75,8 @@ const JuiceLab = () => {
             zIndex:-1
             }}>
             
-            <source src="https://static.vecteezy.com/system/resources/previews/002/836/111/mp4/fresh-yellow-orange-juice-on-black-background-liquid-splash-healthy-food-4k-free-video.mp4" type="video/mp4"/>
+          {/*   <source src="https://static.vecteezy.com/system/resources/previews/002/836/111/mp4/fresh-yellow-orange-juice-on-black-background-liquid-splash-healthy-food-4k-free-video.mp4" type="video/mp4"/> */}
+           {/*  <source src={JuiceDrop} type="video/mpeg"/> */}
         </video>
             
         <Image src="https://images.unsplash.com/photo-1505208704833-f341a7a4cefe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8YnJlYWtmYXN0JTIwc21vb3RoaWV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"/>
