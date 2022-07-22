@@ -75,7 +75,7 @@ const JuiceLab = () => {
             zIndex:-1
             }}>
             
-          {/*   <source src="https://static.vecteezy.com/system/resources/previews/002/836/111/mp4/fresh-yellow-orange-juice-on-black-background-liquid-splash-healthy-food-4k-free-video.mp4" type="video/mp4"/> */}
+            <source src="" type=""/> 
            {/*  <source src={JuiceDrop} type="video/mpeg"/> */}
         </video>
             
