@@ -8,16 +8,17 @@ fruitRoute.get(
     "/",
     getFruits
 );
-
+// GET POST FRUIT'S
 fruitRoute.post(
     "/create",
     createFruits
 );
-
+// GET DELETE FRUIT'S
 fruitRoute.delete(
     "/delete/:id",
     deleteFruits
 );
+// GET PUT FRUIT'S
 fruitRoute.put(
     "/put/:id",
     updateFruits
