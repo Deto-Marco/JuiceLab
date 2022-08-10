@@ -1,5 +1,5 @@
 import express from "express";
-import { createFruits, getFruits } from "../controllers/fruitListController.js";
+import { createFruits, deleteFruits, getFruits } from "../controllers/fruitListController.js";
 
 const fruitRoute = express.Router();
 
@@ -13,6 +13,11 @@ fruitRoute.post(
     "/create",
     createFruits
 );
+
+fruitRoute.delete(
+    "/delete/:id",
+    deleteFruits
+)
 export default fruitRoute;
 
 

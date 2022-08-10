@@ -14,10 +14,20 @@ export const getFruits = async (req, res) => {
 export const createFruits = async (req, res) => {
     const post = req.body
     try {
-        const newPost = new fruitListModel(post)
-        await newPost.save()
+        const newFruit = new fruitListModel(post)
+        await newFruit.save()
         res.status(201).json(newPost);
     } catch (error) {
         res.status(409).json({msg: error.message});
     }
 };
+
+export const deleteFruits = async (req, res) => {
+    
+    try {
+        await fruitListModel.findByIdAndDelete(req.params.id);
+        res.status(200).json({ msg: "Fruit removed!"});
+    } catch (error) {
+        console.log(error.message);
+    }
+}
