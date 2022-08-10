@@ -1,6 +1,6 @@
 import fruitListModel from "../models/fruitListModel.js";
 
-
+// Get the Product's
 export const getFruits = async (req, res) => {
     try {
         const result = await fruitListModel.find();
@@ -10,7 +10,7 @@ export const getFruits = async (req, res) => {
         console.log(error);
     }
 };
-
+// Create the Product's
 export const createFruits = async (req, res) => {
     const post = req.body
     try {
@@ -21,7 +21,7 @@ export const createFruits = async (req, res) => {
         res.status(409).json({msg: error.message});
     }
 };
-
+// Delete the Product's
 export const deleteFruits = async (req, res) => {
     
     try {
@@ -30,4 +30,16 @@ export const deleteFruits = async (req, res) => {
     } catch (error) {
         console.log(error.message);
     }
-}
+};
+// Update the Product's
+
+export const updateFruits = async (req, res) => {
+
+    try{
+        const fruit = await fruitListModel.findByIdAndUpdate(req.params.id, req.body,
+            {new:true},);
+        res.status(200).json(fruit);
+    } catch(err) {
+       console.log(err.message);
+    }
+};
