@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import styledComponents from 'styled-components'
-import {BsCart3, BsSearch, BsHeart} from "react-icons/bs"
+import {BsCart3} from "react-icons/bs"
 import { MyContext } from './context/context'
 
 
@@ -19,36 +19,36 @@ align-items: center;
 justify-content: center;
 transition: all 0.5s ease;
 cursor: pointer;
+border-radius:1.5%;
+
 `
 
 
 const Container = styledComponents.div`
 flex: 1;
-margin: 5px;
+padding: 20px;
 min-width: 280px;
 height: 350px;
 display: flex;
 align-items: center;
-justify-content: center;
+justify-content: space-between;
 flex-basis: 20vw;
 background-color: #f5fbfd;
 position: relative;
 &:hover ${Info}{
 opacity: 1;
 }
+gap: 20px;
+
 `
 
-const Circle = styledComponents.div`
-width: 200px;
-height: 200px;
-border-radius: 50%;
-background-color: white;
-position: absolute;
-`
 
 const Image = styledComponents.img`
-height: 75%;
-z-index: 2;
+height: 100%;
+width: 100%;
+object-fit: cover;
+border-radius:1.5%;
+
 `
 
 
@@ -68,33 +68,39 @@ transition: all 0.5s ease;
 }
 `
 
+ 
+
 const RecommendedProducts = ({imgUrl,id, title, price}) => {
-  const {cart, setCart} = useContext(MyContext)
+  const {cart, addItemToCart} = useContext(MyContext)
+  const myProduct = (product) => {
+    addItemToCart(product); 
+    console.log(cart);
+  }
+  
   return (
     <Container>
 
-      <Circle/>
 
       <Image src={imgUrl}/>
 
       <Info>
             <Icon>
-             <div onClick={() => setCart([...cart,{id,imgUrl,title,price}
+             { <div onClick={() => myProduct({id,imgUrl,title,price})}><BsCart3/></div> }
 
-             ])}><BsCart3/></div>
+             
             </Icon>
+<Icon>
+<div>&euro;{price}</div> 
+</Icon>
+            
 
-            <Icon>
-              <BsSearch/>
-            </Icon>
-
-            <Icon>
-              <BsHeart/>
-            </Icon>
+            
       </Info>
-      {/* <div>{price}</div> */}
+     
     </Container>
   )
 }
+
+
 
 export default RecommendedProducts

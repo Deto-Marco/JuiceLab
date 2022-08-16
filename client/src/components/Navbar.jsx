@@ -1,31 +1,42 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, useRef, } from 'react'
 import styledComponents from 'styled-components'
 import {ImCart} from "react-icons/im"
-import { NavLink } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { MyContext } from './context/context'
 
 
-
-
-
-
 const Container = styledComponents.div`
-height: 60px;
+height: 80px;
+border-bottom: 0.5px solid lightgray;
 `
 
 const Wrapper = styledComponents.div`
 padding: 10px 30px;
 display: flex;
-justify-content: space-around;
-position: absolute;
-right: 150px;
+justify-content: space-between;
+align-items: center;
+
 `
+const Left = styledComponents.div`
+flex:1;
+display: flex;
+align-items: center;
+`
+
+const Logo = styledComponents.h1`
+color: #F1A403 ;
+height: 10vh;
+font-weight: 700;
+font-size: 50px;
+font-family:  'Roboto', sans-serif,; 
+`
+
 
 const Right = styledComponents.div`
 flex:1;
 display: flex;
-
-
+align-items: center;
+justify-content: flex-end;
 `
 
 const MenuLink = styledComponents.div`
@@ -33,9 +44,16 @@ font-size = 14px;
 cursor: pointer;
 margin-left: 12px; 
 `
+
+
 const Summary = styledComponents.div`
-color: white;
+color: red;
+width: 200px;
+left: 6px;
+z-index: 10;
+background: #e7dccd;
 flex: 1;
+position: absolute;
 border: 0.5px solid lightgray;
 border-radius: 10px;
 padding: 20px;
@@ -68,33 +86,65 @@ const SummaryButton = styledComponents.button`
 width: 100%;  <Image src={item.img}/>
 padding: 10px;
 background-color: red;
-color: white;
+color: magenta;
 font-weight: 600;
 ` 
 
+
+
 const Navbar = () => {
-  console.log(useContext(MyContext));
+  const wrapperRef = useRef(null);
+  const navigate = useNavigate();
+
   const {cart} = useContext(MyContext)
   const [showCart, setShowCart] = useState(false)
-  useEffect(() => 
-  {},[])
+  const handleClickOutside = event => {
+    if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+      setShowCart(false)
+    }
+  };
+  const openCheckout = () => {
+    setShowCart(false)
+    navigate("/checkout")
+  
+
+  }
+
+
+  useEffect(() => {
+    window.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      window.removeEventListener('mousedown', () => {});
+    };
+  }, []);
 
   return (
     <Container>
         <Wrapper>
+        <Left>
+          <Logo>JUICELAB.</Logo>
+        </Left>
 
         <Right>
 
-            <NavLink to="/register"><MenuLink>REGISTER/LOGIN</MenuLink></NavLink>
+            <Link to="/register"><MenuLink>REGISTER</MenuLink></Link>
+            <Link to="/login"><MenuLink>LOGIN</MenuLink></Link>
 
-            <NavLink to="/cart"><MenuLink onMouseEnter={()=> setShowCart(true)} onMouseOut={()=> setShowCart(false)}><ImCart/><sup style={{color: "white"}}>
-              {cart.length}</sup></MenuLink></NavLink>
-        </Right>
-        {showCart &&
+            <span ref={wrapperRef}><MenuLink 
+            
+            
+            onClick={()=> setShowCart(true)}>
+              
+
+              <ImCart/><sup style={{color: "red"}}>
+              {cart.length}</sup>
+              
+              </MenuLink>
+              {showCart &&
         <Summary>
                 <SummaryTitle>Your Order</SummaryTitle>
-                {cart.map(item => (
-<SummaryItem>
+                {cart.map((item, index)=> (
+<SummaryItem key={index}>
                     <SummaryText>{item.title}</SummaryText>
                     <SummaryPrice>$ {item.price}</SummaryPrice>
                 </SummaryItem>
@@ -104,12 +154,15 @@ const Navbar = () => {
                     <SummaryText>Total</SummaryText>
                     <SummaryPrice>$ total "45"</SummaryPrice>
                 </SummaryItem>
-                <NavLink to="/checkOut">
-                <SummaryButton>Checkout Now</SummaryButton>
-                </NavLink>
+
+                <SummaryButton onClick={openCheckout}>Checkout Now</SummaryButton>
+               
              
             </Summary> 
              }
+        
+              </span>
+        </Right>
         
         </Wrapper>
         </Container>

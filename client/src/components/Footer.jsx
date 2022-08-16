@@ -5,6 +5,7 @@ import {FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa"
 
 
 const Container = styledComponents.div`
+margin-top: 50px;
 display: flex;
 color: #F1A403;
 
