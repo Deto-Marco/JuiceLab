@@ -13,16 +13,16 @@ export const userSignup = async (req, res) => {
     if (existingUser) {
       return res.status(400).json({ msg: "User Already Exists!" });
     }
-
-    //Create a new user
+    
+    //CREATE
     const user = new userModel({
       firstName,
       email,
-      password, // "password": 1234
+      password, 
     });
 
     const salt = await bcrypt.genSalt(10);
-    user.password = await bcrypt.hash(password, salt); //$sdkjakj23123jk123g12g
+    user.password = await bcrypt.hash(password, salt);
 
     await user.save();
 
@@ -76,7 +76,6 @@ export const userLogin = async (req, res) => {
 };
 
 export const loggedIn = async (req, res) => {
-  //code here
   try {
     const user = await userModel.findById(req.user.id).select("-password");
     res.status(200).json(user);
