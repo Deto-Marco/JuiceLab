@@ -2,7 +2,7 @@ import express from "express";
 import 'dotenv/config';
 import cors from "cors";
 import connectDatabase from "./config/mongoDb.js";
-import { errorHandler, notFound } from "./middelware/error.js";
+import { errorHandler, notFound } from "./middleware/error";
 import user from "./routes/user.js"
 import fruitRoute from "./routes/fruitListRoutes.js";
 
