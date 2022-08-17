@@ -1,5 +1,11 @@
+
 # Ignore the node_modules directory
 node_modules/
+=======
+
+# Ignore the node_modules directory
+*/node_modules/
+
 
 # Ignore Logs
 logs
@@ -9,7 +15,11 @@ logs
 /dist
 
 # The file containing environment variables 
+
 .env
+=======
+*/.env
+
 .DS_Store
 .env.local
 .env.development.local
@@ -19,4 +29,9 @@ logs
 # Ignore IDE specific files
 .idea/
 .vscode/
+
 *.sw*
+=======
+*.sw*
+
+

@@ -8,11 +8,15 @@ import ShoppingCart from './components/ShoppingCart';
 const App = () => {
   return (
     <main>
+
       <ShoppingCart/>
     <Bulletin/>
     <Navbar/>
     <JuiceLab/>
     <Footer/>
+=======
+      <h1>hello world</h1>
+
     </main>
   );
 };
