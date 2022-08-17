@@ -5,17 +5,14 @@ import connectDatabase from "./config/mongoDb.js";
 import { errorHandler, notFound } from "./middelware/error.js";
 import dotenv from "dotenv"
 import user from "./routes/user.js"
-import mongoose from "mongoose"
-//import fruitRoute from "./routes/fruitListRoutes.js";
-
 
 
 connectDatabase();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-dotenv.config();
 app.use(cors());
+dotenv.config();
 
 //API
 app.use("/", user)
