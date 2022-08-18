@@ -40,6 +40,6 @@ export const updateFruits = async (req, res) => {
             {new:true},);
         res.status(200).json(fruit);
     } catch(err) {
-       console.log(err.message);
+        console.log(err.message);
     }
 };

@@ -2,8 +2,8 @@ import express from "express";
 import 'dotenv/config';
 import cors from "cors";
 import connectDatabase from "./config/mongoDb.js";
-import { errorHandler, notFound } from "./middleware/error";
-import user from "./routes/user.js"
+import { errorHandler, notFound } from "./middleware/error.js";
+import userRoute from "./routes/userRoutes.js"
 import fruitRoute from "./routes/fruitListRoutes.js";
 
 
@@ -13,10 +13,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cors());
 
-
-
 //API
-app.use("/", user)
+app.use("/api/user", userRoute)
 app.use("/api/fruits", fruitRoute)
 
 

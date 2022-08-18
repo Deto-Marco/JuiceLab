@@ -1,0 +1,20 @@
+.App {
+  text-align: center;
+}
+
+.fruits {
+  display: flex;
+  align-content: space-around;
+  background-color: orangered;
+  flex-direction: row;
+}
+ 
+.fruit {
+  display: flexbox;
+
+}
+.fruit img {
+  max-height: 8rem;
+  width: 100%;
+}
+
