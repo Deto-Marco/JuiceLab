@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom';
 const Wrapper = styled.form `
     width: 20vw;
-    
+    margin: 20vh auto;
     border: 1px solid silver;
     padding: 26px 32px 32px;
     border-radius: 2px;
