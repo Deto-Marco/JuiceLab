@@ -54,8 +54,9 @@ function RegisterPage () {
         <input className="input" type="password" name="password"  placeholder="******" />
       </label>
       <button type="submit">Register</button>
-    </Wrapper>
+    
     <button onClick={() => Navigate ("/")}>Home Page</button>
+     </Wrapper>
     </div>
   );
 }
