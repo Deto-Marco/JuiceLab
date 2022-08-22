@@ -15,6 +15,7 @@ const Wrapper = styled.form `
         margin-bottom: 16px;
     }
     
+    
     &#login-form input {
         display: block;
         width: 100%;
