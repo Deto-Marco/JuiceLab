@@ -1,10 +1,5 @@
-import React from 'react'
-import '../App.css';
-
-
-const Fruits = (props) => {
-
-  const {fruits, onAdd, onRemove} = props;
+/* const Fruits = (props) => {
+  const {mixFruits ,fruits, onAdd, onRemove} = props;
   
   return (
     <div className='fruits'>
@@ -23,5 +18,21 @@ const Fruits = (props) => {
     </div>
   )
 }
+export default Fruits */
 
-export default Fruits
+import React from 'react';
+import Fruit from './Fruit';
+
+export default function Main(props) {
+const {mixFruits ,fruits, onAdd, onRemove} = props
+  return (
+    <main className="block col-2">
+      <h2>Choose the Fruits of your desire.</h2>
+      <div className="row">
+        {fruits.map((fruit) => (
+          <Fruit key={fruit.id} fruit={fruit} onAdd={onAdd}></Fruit>
+        ))}
+      </div>
+    </main>
+  );
+}
