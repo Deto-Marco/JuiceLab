@@ -45,8 +45,9 @@ function LoginPage ({ handleSubmit}) {
         <input className="input" type="password" placeholder="******"/>
       </label>
       <button type="submit">Log In</button>
-    </Wrapper>
+
     <button onClick={() => Navigate ("/")}>Home Page</button>
+      </Wrapper>
     </div>
   );
 }
