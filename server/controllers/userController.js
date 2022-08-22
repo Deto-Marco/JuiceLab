@@ -5,20 +5,20 @@ import jwt from "jsonwebtoken";
 export const userSignup = async (req, res) => {
   //Code here
 
-  const { firstName, email, password } = req.body;
+    const { firstName, email, password } = req.body;
 
-  try {
+    try {
     //Check if user already exisists
     let existingUser = await userModel.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ msg: "User Already Exists!" });
+        return res.status(400).json({ msg: "User Already Exists!" });
     }
     
     //CREATE
     const user = new userModel({
-      firstName,
-      email,
-      password, 
+    firstName,
+    email,
+    password, 
     });
 
     const salt = await bcrypt.genSalt(10);
@@ -28,24 +28,24 @@ export const userSignup = async (req, res) => {
 
     //Create a payload with user ID and may be firstName
     const payload = {
-      user: {
+    user: {
         id: user._id,
         name: user.firstName,
-        msg: "Hello Wojtek!",
-      },
+        msg: `Hello ${user.firstName}!`,
+        },
     };
 
     jwt.sign(payload, "randomString", { expiresIn: "1h" }, (err, token) => {
-      if (err) throw err;
-      res.status(200).json({ token });
+    if (err) throw err;
+    res.status(200).json({ token });
     });
-  } catch (error) {
+    } catch (error) {
     res.status(500).send(error);
-  }
+    }
 };
 
 export const userLogin = async (req, res) => {
-  //Code here
+
   const { email, password } = req.body;
 
   try {
@@ -83,3 +83,5 @@ export const loggedIn = async (req, res) => {
     res.json(error.message);
   }
 };
+
+
