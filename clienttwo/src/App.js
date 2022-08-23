@@ -8,14 +8,16 @@ import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 
 function App() {
-
+  
+  //setting up state to update the Mixer
+  const [mixFruits, setMixFruits] = useState([]);
   //axios fetch
-  const [fruits, setFruits] = useState([]);
+  const [fruitData, setFruitData] = useState([]);
 
     const fetchData =()=>{
       axios.get('http://localhost:5000/api/fruits')
         .then((res) => {
-          setFruits(res.data)
+          setFruitData(res.data)
         })
     }
 
@@ -23,50 +25,78 @@ function App() {
       fetchData();
     },[])
     
-  
-  //setting up state to update the Mixer
-  const [mixFruits, setMixFruits] = useState([]);
+    const fruits = fruitData;
 
+  
   //add and remove button for fruitlist to mixer array
 
     const onAdd = (fruit) => {
-        const exist = mixFruits.find((x) => x.id === fruit.id);
+        const exist = mixFruits.find((x) => x._id === fruit._id);
           if (exist) { 
-            setMixFruits(
-              mixFruits.map((x) =>
-                x.id === fruit.id ? { ...exist, qty: exist.qty + 1 } : x
-                )            
-              );
+            const newMixFruits = mixFruits.map((x)=> 
+            x._id === fruit._id ? { ...exist, qty: exist.qty + 1 }  : x );
+            setMixFruits(newMixFruits)
             } else {
-              setMixFruits([...mixFruits, {...fruit, qty: 1 }] );
-      };console.log("fruit added", fruit);
+              const newMixFruits = [...mixFruits, {...fruit, qty: 1 }];
+              setMixFruits(newMixFruits);
+              localStorage.setItem('mixFruits', JSON.stringify(newMixFruits))
+              };
+          console.log("fruit added", fruit);
     };
 
     const onRemove = (fruit) => {
-      const exist = mixFruits.find((x) => x.id === fruit.id);
+      const exist = mixFruits.find((x) => x._id === fruit._id);
       if (exist.qty === 1) {
-        setMixFruits(mixFruits.filter((x) => x.id !== fruit.id));
-      } else {
-        setMixFruits(
-          mixFruits.map((x) => 
-          x.id === fruit.id ? { ...exist, qty: exist.qty -1} : x
-          )
+        const newMixFruits = mixFruits.filter((x) => x._id !== fruit._id
         );
+        setMixFruits(newMixFruits);
+        localStorage.setItem('mixFruits', JSON.stringify(newMixFruits))
+      } else {
+        const newMixFruits = mixFruits.map((x) =>
+        x._id === fruit._id ? { ...exist, qty: exist.qty -1} : x
+        );
+        setMixFruits(newMixFruits);
+        localStorage.setItem('mixFruits', JSON.stringify(newMixFruits))
+
       }
       console.log("fruit deleted", fruit)
     };
 
-
+    useEffect(()=> {   
+      setMixFruits(
+        localStorage.getItem('mixFruits')
+        ? JSON.parse(localStorage.getItem('mixFruits'))
+        : []
+      );
+    },[]);
 
   return (
     <div className="App">
       <Background />
+
       <Welcome />
       <div className="row">
-      <Fruits fruits={fruits} onAdd={onAdd} onRemove={onRemove}/>
-      <Mixer mixFruits={mixFruits} countMixFruits={mixFruits.length}  />
+
+      <Fruits 
+        fruits={fruits} 
+        onAdd={onAdd} 
+        onRemove={onRemove} 
+        mixFruits={mixFruits}
+      />
+
+      <Mixer 
+          onAdd={onAdd} 
+          onRemove={onRemove} 
+          mixFruits={mixFruits} 
+          countMixFruits={mixFruits.length}  
+      />
+
       <Userprofile />
-      <Cart mixFruits = {mixFruits} countMixFruits={mixFruits.length} />
+
+      <Cart 
+          mixFruits = {mixFruits} 
+          countMixFruits={mixFruits.length} 
+      />
       </div>
     </div>
   );

@@ -19,18 +19,24 @@
   )
 }
 export default Fruits */
-
-import React from 'react';
 import Fruit from './Fruit';
 
-export default function Main(props) {
-const {mixFruits ,fruits, onAdd, onRemove} = props
+export default function Fruits(props) {
+const {fruits, onAdd, onRemove, mixFruits} = props;
   return (
     <main className="block col-2">
       <h2>Choose the Fruits of your desire.</h2>
       <div className="row">
         {fruits.map((fruit) => (
-          <Fruit key={fruit.id} fruit={fruit} onAdd={onAdd}></Fruit>
+          <Fruit 
+            key={fruit._id} 
+            fruit={fruit}
+            mixFruit={mixFruits.find((x) => x._id === fruit._id)} 
+            onAdd={onAdd}
+            onRemove={onRemove}
+          >
+            
+          </Fruit>
         ))}
       </div>
     </main>

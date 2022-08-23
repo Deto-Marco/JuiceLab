@@ -14,7 +14,6 @@ const fruitListSchema = mongoose.Schema(
             type: String,
             required: true,
         },
-
 });
 
 const fruitListModel = mongoose.model("fruitList", fruitListSchema)
