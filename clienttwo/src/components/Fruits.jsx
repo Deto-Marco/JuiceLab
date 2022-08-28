@@ -38,6 +38,7 @@ const {fruits, onAdd, onRemove, mixFruits} = props;
             
           </Fruit>
         ))}
+        
       </div>
     </main>
   );

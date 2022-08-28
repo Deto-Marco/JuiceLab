@@ -1,6 +1,13 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    font-family: 'Helvetica';
-  }
+  background-color: #242526;
+  font-family: sans-serif;
+}
   h1,
   h2,
   h3 {
