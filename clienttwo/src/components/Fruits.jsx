@@ -22,7 +22,7 @@ export default Fruits */
 import Fruit from './Fruit';
 
 export default function Fruits(props) {
-const {fruits, onAdd, onRemove, mixFruits} = props;
+const {fruits, onAdd, onRemove, mixFruits, MultiRangeSlider} = props;
   return (
     <main className="block col-2">
       <h2>Choose the Fruits of your desire.</h2>
@@ -34,6 +34,7 @@ const {fruits, onAdd, onRemove, mixFruits} = props;
             mixFruit={mixFruits.find((x) => x._id === fruit._id)} 
             onAdd={onAdd}
             onRemove={onRemove}
+            MultiRangeSlider={MultiRangeSlider}
           >
             
           </Fruit>

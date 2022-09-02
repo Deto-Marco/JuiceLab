@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import "../MultiRangeSlider/multiRangeSlider.css";
 
-const MultiRangeSlider = ({ min, max, onChange, countMixFruits }) => {
+const MultiRangeSlider = ({ min, max, onChange, countMixFruits, mixFruits, setMixFruits}) => {
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
   const minValRef = useRef(min);
@@ -43,28 +43,78 @@ const MultiRangeSlider = ({ min, max, onChange, countMixFruits }) => {
 
   return (
     <div className="container">
+      {/* {mixFruits.map((fruit,index)=>{
+        
+        return index === 0? null:
+        (<input
+          type="range"
+          min={min}
+          max={100-(mixFruits.filter(item=>item._id!==fruit._id)).reduce((acc,el)=>acc+el.ratio)}
+          value={fruit.ratio}
+          onChange={(event) => {
+            let updatedRatios = mixFruits.map(item=>{
+              if (item._id===fruit._id){
+                item.ratio=event.target.value
+                return item
+              }
+              else {
+                item.ratio=100-event.target.value
+                return item
+              }
+            })
+            setMixFruits(updatedRatios)
+            const value = Math.min(Number(event.target.value), maxVal - 1);
+            setMinVal(value);
+            minValRef.current = value;
+          }}
+          className="thumb thumb--left"
+          style={{ zIndex: minVal > max - 100 && "5" }}
+        />)
+      })} */}
+      
 {countMixFruits>=2 &&    <input
         type="range"
         min={min}
         max={max}
-        value={minVal}
+        value={mixFruits[1].ratio}
         onChange={(event) => {
-          const value = Math.min(Number(event.target.value), maxVal - 1);
-          setMinVal(value);
-          minValRef.current = value;
+          event.stopPropagation()
+          let updatedRatios = mixFruits.map(item=>{
+          if (item._id===mixFruits[1]._id){
+            item.ratio=event.target.value
+            return item
+          }
+          else {
+            item.ratio=100-event.target.value
+            return item
+          }
+        })
+        setMixFruits(updatedRatios)
         }}
         className="thumb thumb--left"
         style={{ zIndex: minVal > max - 100 && "5" }}
       />}
 {countMixFruits>=3 && <input
         type="range"
-        min={min}
+        min={mixFruits[0].ratio}
         max={max}
-        value={maxVal}
+        value={mixFruits[2].ratio+mixFruits[1].ratio}
         onChange={(event) => {
-          const value = Math.max(Number(event.target.value), minVal + 1);
-          setMaxVal(value);
-          maxValRef.current = value;
+          console.log(event.target.value);
+          event.stopPropagation()
+          let updatedRatios = mixFruits.map((item,index)=>{
+          if(index==1){
+            item.ratio= +item.ratio-(+event.target.value)
+            return item
+          }
+          else if (index==2){
+            item.ratio= event.target.value
+            return item
+          }
+          return item
+        })
+        console.log(updatedRatios);
+        setMixFruits(updatedRatios)
         }}
         className="thumb thumb--right"
       />}

@@ -1,5 +1,5 @@
 export default function Fruit(props) {
-    const { fruit, onAdd, /* onRemove, mixFruit */ } = props;
+    const { fruit, onAdd,/* MultiRangeSlider, onRemove, mixFruit */ } = props;
     return (
         <div className="card">
         <img className="small" src={fruit.image} alt={fruit.name} />
